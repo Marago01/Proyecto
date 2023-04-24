@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nombre','apellido','correo','usuario','contraseña'];
+    protected $allowedFields    = ['nombre','apellido','correo','usuario','password'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,6 +39,15 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    
+
+
+
 }
+
+
+
 
 

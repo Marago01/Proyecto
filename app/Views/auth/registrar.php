@@ -72,12 +72,12 @@
 
                     <div class="form-group mb-3">
                         <label for="">Contraseña</label>
-                        <input type="password" class="form-control" name="contraseña" placeholder="Ingrese su contraseña" autofocus required>
+                        <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña" autofocus required>
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="">Confirmar contraseña</label>
-                        <input type="password" class="form-control" name="ccontraseña" placeholder="Ingrese su contraseña"autofocus required>
+                        <input type="password" class="form-control" name="cpassword" placeholder="Ingrese su contraseña"autofocus required>
                     </div>
 
                     <div class="form-group mb-3">

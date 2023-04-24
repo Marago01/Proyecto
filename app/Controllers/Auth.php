@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\Hash;
 use App\Models\UserModel;
-use App\Models\Usuarios;
+
 
 
 class Auth extends BaseController
@@ -32,8 +32,8 @@ class Auth extends BaseController
         $apellido = $this->request->getPost('apellido');
         $correo = $this->request->getPost('correo');
         $usuario = $this->request->getPost('usuario');
-        $contraseña = $this->request->getPost('contraseña');
-        $ccontraseña = $this->request->getPost('ccontraseña');
+        $password =(string) $this->request->getPost('password');
+        $cpassword = $this->request->getPost('cpassword');
 
         $data = [
 
@@ -41,7 +41,8 @@ class Auth extends BaseController
             'apellido' => $apellido,
             'correo' => $correo,
             'usuario' => $usuario,
-            'contraseña' => Hash::encrypt($contraseña)
+            'password' => $password
+            //'password' => Hash::encrypt($password)
         ];
 
         $userModel = new \App\Models\UserModel();
@@ -57,25 +58,35 @@ class Auth extends BaseController
 
     public function loginUser()
     {
-          $usuario = $this->request->getPost('usuario');
-          $contraseña =$this->request->getPost('contraseña');
+          $usuario =$this->request->getPost('usuario');
+          $password =(string)$this->request->getPost('password');
 
           $userModel = new UserModel();
-          $userInfo = $userModel->where('usuario', $usuario)->first();
-
-          $verificacion = Hash::check($contraseña, $userInfo['contraseña']);
-           if (!$verificacion){
           
-               session()->setFlashdata('fail', 'Contraseña incorrecta, intenta de nuevo');
-            
-              return redirect()->to('auth');
-           } 
-           else{
-        
+    
+          $userInfo = $userModel->where('usuario',$usuario)->first();
+          //print_r($userInfo);
+          
+    //    $encriptador = \Config\Services::encrypter();
+    //    $verificacion= $encriptador->decrypt(hex2bin($userInfo['password']));
+    //       if($password==$verificacion){
+    //         return redirect()->to('/tablero');
+    //       }
+         //$verificacion = password_verify($password, $userInfo['password']);
+         
+           if ($password==$userInfo['password']){
             $userId = $userInfo['id'];
 
              session()->set('loggedInUser', $userId);
               return redirect()->to('/tablero');
+              
+            } 
+           else{
+        
+          
+              session()->setFlashdata('fail', 'contraseña incorrecta, intenta de nuevo');
+               
+              return redirect()->to('auth');
           
            }
 

@@ -56,7 +56,7 @@
 
                     <div class="form-group mb-3">
                         <label for="">Contraseña</label>
-                        <input type="password" class="form-control" name="contraseña" placeholder="Ingrese su contraseña" required>
+                        <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña" required>
                     </div>
 
                     <div class="form-group mb-3">
